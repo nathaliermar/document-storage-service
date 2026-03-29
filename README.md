@@ -3,7 +3,7 @@
 Microservice for uploading and managing medical documents.  
 Stores binaries in S3 and metadata in PostgreSQL. Exposes Presigned URLs for direct download — the file never passes through the container.
 
-Used as a dependency by [medical-request-platform](https://github.com/nathaliermar/medical-request-platform).
+Used as a dependency by [medical-request-service](https://github.com/nathaliermar/medical-request-service).
 
 ---
 
