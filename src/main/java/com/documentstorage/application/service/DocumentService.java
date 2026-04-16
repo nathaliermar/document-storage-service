@@ -2,6 +2,7 @@ package com.documentstorage.application.service;
 
 import com.documentstorage.application.dto.response.DocumentResponse;
 import com.documentstorage.application.dto.response.PresignerUrlResponse;
+import com.documentstorage.application.mapper.DocumentMapper;
 import com.documentstorage.domain.port.out.DocumentRepository;
 import com.documentstorage.infrastructure.persistence.entity.Document;
 import jakarta.persistence.EntityNotFoundException;
@@ -20,6 +21,7 @@ public class DocumentService {
 
     private final DocumentRepository repository;
     private final StorageStrategy storageStrategy;
+    private final DocumentMapper mapper;
 
     public DocumentResponse upload(MultipartFile file, UUID ownerId) throws IOException {
         String s3Key = buildKey(ownerId, file.getOriginalFilename());
@@ -58,13 +60,7 @@ public class DocumentService {
     }
 
     private DocumentResponse toResponse(Document doc) {
-        return new DocumentResponse(
-                doc.getId(),
-                doc.getFileName(),
-                doc.getContentType(),
-                doc.getFileSize(),
-                doc.getUploadedAt()
-        );
+        return mapper.toResponse(doc);
     }
 
     private String buildKey(UUID ownerId, String fileName) {
