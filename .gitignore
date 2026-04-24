@@ -20,3 +20,6 @@ build/
 
 # Local development configuration
 application-local.yml
+
+#AWS
+.aws
